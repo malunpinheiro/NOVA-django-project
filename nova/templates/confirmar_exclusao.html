@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}NOVA | Excluir mistura{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-6">
+    <div class="card border-0 shadow-sm rounded-4 p-4 text-center">
+      <h1 class="h3">Excluir mistura?</h1>
+      <p>Você tem certeza que quer excluir <strong>{{ mistura.nome }}</strong>? Essa ação não pode ser desfeita.</p>
+
+      <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger rounded-pill px-4">Sim, excluir</button>
+        <a href="{% url 'detalhe_mistura' mistura.pk %}" class="btn btn-outline-aurora">Cancelar</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

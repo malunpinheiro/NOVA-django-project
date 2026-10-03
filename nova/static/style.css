@@ -1,0 +1,143 @@
+:root {
+  --rosa: #ff4fa3;      /* rosa-chiclete */
+  --perola: #fff5fb;    /* branco perolado */
+  --tinta: #2b1b3d;     /* roxo escuro p/ texto */
+  --holo: linear-gradient(120deg, #ff4fa3, #c8a2ff 50%, #7ee8fa);
+}
+
+body {
+  font-family: 'Fredoka', sans-serif;
+  background: var(--perola);
+  color: var(--tinta);
+}
+
+.brand-tech, .tag-tech {
+  font-family: 'Orbitron', sans-serif;
+  letter-spacing: 0.08em;
+}
+
+.navbar-aurora {
+  background: #fff;
+  border-bottom: 3px solid transparent;
+  border-image: var(--holo) 1;
+}
+.navbar-aurora .navbar-brand { color: var(--rosa); font-weight: 700; }
+.navbar-aurora .nav-link { color: var(--tinta); font-weight: 500; }
+.navbar-aurora .nav-link:hover { color: var(--rosa); }
+
+.btn-aurora {
+  background: var(--holo);
+  border: 0;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 50rem;
+  padding: .5rem 1.4rem;
+}
+.btn-aurora:hover { color: #fff; filter: brightness(1.08); }
+
+.btn-outline-aurora {
+  border: 2px solid var(--rosa);
+  color: var(--rosa);
+  border-radius: 50rem;
+}
+.btn-outline-aurora:hover { background: var(--rosa); color: #fff; }
+
+.hero {
+  background: var(--holo);
+  color: #fff;
+  border-radius: 2rem;
+  padding: 4rem 2rem;
+  text-align: center;
+  box-shadow: 0 1rem 2rem rgba(255, 79, 163, .25);
+}
+.hero h1 { font-weight: 600; }
+
+.card-perfume {
+  border: 0;
+  border-radius: 1.5rem;
+  box-shadow: 0 .5rem 1.2rem rgba(43, 27, 61, .08);
+  transition: transform .2s, box-shadow .2s;
+  overflow: hidden;
+}
+.card-perfume:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 1rem 1.8rem rgba(255, 79, 163, .25);
+}
+.card-perfume .capa {
+  height: 180px;
+  background: var(--holo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+.card-perfume .capa img { width: 100%; height: 100%; object-fit: cover; }
+
+.footer-aurora {
+  background: var(--tinta);
+  color: var(--perola);
+}
+
+.form-nova p { margin-bottom: 1.2rem; }
+.form-nova p > label { display: block; font-weight: 600; margin-bottom: .35rem; }
+.form-nova .errorlist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 .4rem;
+  color: #dc3545;
+  font-size: .9rem;
+}
+
+#id_perfumes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: .6rem;
+  margin-bottom: 1.2rem;
+}
+#id_perfumes > div { margin: 0; }
+#id_perfumes label {
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+  width: 100%;
+  background: #fff;
+  border: 2px solid #f6d3e6;
+  border-radius: 1rem;
+  padding: .8rem 1rem;
+  cursor: pointer;
+  transition: border-color .2s, background .2s;
+}
+#id_perfumes label:hover { border-color: var(--rosa); }
+#id_perfumes label:has(input:checked) {
+  border-color: var(--rosa);
+  background: #fff0f8;
+}
+#id_perfumes input {
+  accent-color: var(--rosa);
+  width: 1.1rem;
+  height: 1.1rem;
+  flex-shrink: 0;
+}
+
+.form-login div { margin-bottom: 1rem; }
+.form-login label { display: block; font-weight: 600; margin-bottom: .35rem; }
+.form-login input[type="text"],
+.form-login input[type="password"] {
+  width: 100%;
+  padding: .55rem .9rem;
+  border: 1px solid #ced4da;
+  border-radius: .6rem;
+  background: #fff;
+}
+.form-login input:focus {
+  outline: none;
+  border-color: var(--rosa);
+  box-shadow: 0 0 0 .2rem rgba(255, 79, 163, .25);
+}
+.form-login .errorlist {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 .5rem;
+  color: #dc3545;
+  font-size: .9rem;
+}

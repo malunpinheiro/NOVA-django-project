@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}NOVA | Laboratório{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+  <p class="tag-tech mb-1">LABORATÓRIO NOVA ✦ CRIE O SEU</p>
+  <h1>Misturas da comunidade</h1>
+  <p class="lead">Combine 2 ou 3 perfumes da vitrine e crie uma fragrância só sua.</p>
+  {% if user.is_authenticated %}
+    <a href="{% url 'criar_mistura' %}" class="btn btn-aurora btn-lg mt-2">✦ Criar minha mistura</a>
+  {% else %}
+    <a href="{% url 'login' %}" class="btn btn-outline-aurora mt-2">Entre para criar a sua</a>
+  {% endif %}
+</div>
+
+<div class="row g-4">
+  {% for mistura in misturas %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card card-perfume h-100">
+        <div class="card-body">
+          <span class="tag-tech small">POR {{ mistura.criador.username|upper }}</span>
+          <h5 class="card-title mt-1">{{ mistura.nome }}</h5>
+          <p class="card-text">{{ mistura.descricao }}</p>
+          <div class="d-flex flex-wrap gap-1">
+            {% for perfume in mistura.perfumes.all %}
+              <span class="badge rounded-pill text-bg-light border">{{ perfume.nome }}</span>
+            {% endfor %}
+          </div>
+        </div>
+        <div class="card-footer bg-white border-0 pb-3 d-flex flex-wrap gap-2">
+          <a href="{% url 'detalhe_mistura' mistura.pk %}" class="btn btn-sm btn-aurora">Ver detalhes</a>
+          {% if user.is_authenticated and user == mistura.criador %}
+            <a href="{% url 'editar_mistura' mistura.pk %}" class="btn btn-sm btn-outline-aurora">Editar</a>
+            <a href="{% url 'excluir_mistura' mistura.pk %}" class="btn btn-sm btn-outline-danger rounded-pill">Excluir</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-center">Ainda não há misturas. Seja a primeira a criar!</p>
+  {% endfor %}
+</div>
+{% endblock %}

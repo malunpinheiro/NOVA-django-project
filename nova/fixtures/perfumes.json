@@ -1,0 +1,67 @@
+[
+{
+  "model": "nova.perfume",
+  "pk": 1,
+  "fields": {
+    "nome": "NOVA - SOLARIS",
+    "descricao": "Coco cremoso, flores solares e baunilha dourada — o cheiro de uma pele aquecida pelo sol depois de um dia inteiro à beira-mar.",
+    "notas": "Coco, tiaré, baunilha, âmbar dourado, sândalo",
+    "familia": "SOL",
+    "preco": "189.90",
+    "imagem_url": "https://app.leonardo.ai/generation/image/create-hyper-realistic-luxury-3d-product-0f36fd2d-b3fd-4af0-a2d7-5a3bd3cef8b6?utm_source=share_asset&utm_medium=copylink&utm_content=image",
+    "destaque": true
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 2,
+  "fields": {
+    "nome": "NOVA - PÊCHE ÉCLAT",
+    "descricao": "Pêssego suculento, frutas amarelas e flores delicadas envolvidas por um véu cremoso e luminoso.",
+    "notas": "Pêssego, damasco, nectarina, flor de laranjeira, baunilha, musk",
+    "familia": "FRU",
+    "preco": "199.90",
+    "imagem_url": "https://app.leonardo.ai/generation/image/create-hyper-realistic-luxury-3d-product-2f4a2739-0157-4893-b073-0e98417caa15?utm_source=share_asset&utm_medium=copylink&utm_content=image",
+    "destaque": true
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 3,
+  "fields": {
+    "nome": "NOVA - CITRUS BOHÈME",
+    "descricao": "A explosão fresca de cítricos recém-cortados encontra pistache cremoso, folhas verdes e madeiras suaves.",
+    "notas": "Bergamota, grapefruit, pera, pistache, folhas verdes, cedro, musk",
+    "familia": "CIT",
+    "preco": "179.50",
+    "imagem_url": "https://app.leonardo.ai/generation/image/create-hyper-realistic-luxury-3d-product-1c8c9648-fe8f-4e94-9d7d-c8ceaf49c04e?utm_source=share_asset&utm_medium=copylink&utm_content=image",
+    "destaque": true
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 4,
+  "fields": {
+    "nome": "NOVA - MARÉ BLANCHE",
+    "descricao": "Uma brisa salgada atravessando flores brancas enquanto o sol aquece a pele. Limpo, luminoso e delicadamente cremoso.",
+    "notas": "Sal marinho, bergamota, flor de laranjeira, jasmim, coco, musk branco",
+    "familia": "AQU",
+    "preco": "169.81",
+    "imagem_url": "https://app.leonardo.ai/generation/image/create-hyper-realistic-luxury-3d-product-87542f54-9518-4949-aa85-5f6d78eff044?utm_source=share_asset&utm_medium=copylink&utm_content=image",
+    "destaque": false
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 5,
+  "fields": {
+    "nome": "NOVA - MANGO VELVET",
+    "descricao": "Manga tropical madura envolvida por leite de coco, flores cremosas e uma base quente de baunilha e âmbar.",
+    "notas": "Manga, maracujá, coco, ylang-ylang, baunilha, âmbar",
+    "familia": "GOU",
+    "preco": "194.90",
+    "imagem_url": "https://cdn.leonardo.ai/users/ac0f7809-7aaf-4bf1-80e8-1f4636db3f64/generations/1f1bdfae-f279-6b60-9d1a-138defc99245/gpt-image-2_Create_a_hyper-realistic_luxury_3D_product_advertisement_for_an_original",
+    "destaque": false
+  }
+}
+]

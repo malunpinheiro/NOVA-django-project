@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NOVA | Home{% endblock %}
+
+{% block content %}
+<section class="hero mb-5">
+  <p class="tag-tech mb-2">COLEÇÃO VERÃO ✦ NICHO</p>
+  <h1 class="display-4">O verão em um frasco</h1>
+  <p class="lead">Perfumes tropicais de nicho. E, em breve, crie o seu próprio combinando fragrâncias da vitrine.</p>
+  <a href="{% url 'lista_perfumes' %}" class="btn btn-light btn-lg rounded-pill px-5 mt-2">Explorar a vitrine</a>
+</section>
+
+<h2 class="mb-4">Destaques da estação</h2>
+<div class="row g-4">
+  {% for perfume in destaques %}
+    <div class="col-md-4">
+      <div class="card card-perfume h-100">
+                <div class="capa">
+          {% if perfume.nome == "NOVA - SOLARIS" %}
+            <img src="{% static 'img/solaris.jpg' %}" alt="{{ perfume.nome }}">
+          {% elif perfume.nome == "NOVA - PÊCHE ÉCLAT" %}
+            <img src="{% static 'img/pecheeclat.jpg' %}" alt="{{ perfume.nome }}">
+          {% elif perfume.nome == "NOVA - CITRUS BOHÈME" %}
+            <img src="{% static 'img/citrusboheme.jpg' %}" alt="{{ perfume.nome }}">
+          {% elif perfume.nome == "NOVA - MARÉ BLANCHE" %}
+            <img src="{% static 'img/mareblanche.jpg' %}" alt="{{ perfume.nome }}">
+          {% elif perfume.nome == "NOVA - MANGO VELVET" %}
+            <img src="{% static 'img/mangovelvet.jpg' %}" alt="{{ perfume.nome }}">
+          {% else %}
+            🌺
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <span class="tag-tech small text-uppercase">{{ perfume.get_familia_display }}</span>
+          <h5 class="card-title mt-1">{{ perfume.nome }}</h5>
+          <p class="card-text">{{ perfume.descricao }}</p>
+        </div>
+        <div class="card-footer bg-white border-0 pb-3">
+          <strong>R$ {{ perfume.preco|floatformat:2 }}</strong>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p>Nenhum destaque cadastrado ainda. Marque perfumes como destaque no admin.</p>
+  {% endfor %}
+</div>
+{% endblock %}

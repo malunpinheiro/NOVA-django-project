@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}NOVA | {{ titulo }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-8">
+    <div class="card border-0 shadow-sm rounded-4 p-4">
+      <p class="tag-tech mb-1">LABORATÓRIO NOVA</p>
+      <h1 class="h2 mb-4">{{ titulo }}</h1>
+
+      <form method="post" class="form-nova">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" class="btn btn-aurora">Salvar</button>
+        <a href="{% url 'lista_misturas' %}" class="btn btn-outline-aurora">Cancelar</a>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

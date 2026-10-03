@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NOVA | Vitrine{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+  <p class="tag-tech mb-1">COLEÇÃO VERÃO ✦ NICHO</p>
+  <h1>Nossa vitrine</h1>
+</div>
+
+<div class="d-flex flex-wrap justify-content-center gap-2 mb-5">
+  <a href="{% url 'lista_perfumes' %}"
+     class="btn btn-sm {% if not familia_ativa %}btn-aurora{% else %}btn-outline-aurora{% endif %}">
+    Todos
+  </a>
+  {% for codigo, nome in familias %}
+    <a href="{% url 'lista_perfumes' %}?familia={{ codigo }}"
+       class="btn btn-sm {% if familia_ativa == codigo %}btn-aurora{% else %}btn-outline-aurora{% endif %}">
+      {{ nome }}
+    </a>
+  {% endfor %}
+</div>
+
+<div class="row g-4">
+  {% for perfume in perfumes %}
+    <div class="col-md-6 col-lg-4">
+      <div class="card card-perfume h-100">
+            <div class="capa">
+          {% if perfume.nome == "NOVA - SOLARIS" %}
+            <img src="{% static 'img/solaris.jpg' %}" alt="{{ perfume.nome }}">
+          {% elif perfume.nome == "NOVA - PÊCHE ÉCLAT" %}
+            <img src="{% static 'img/pecheeclat.jpg' %}" alt="{{ perfume.nome }}">
+          {% elif perfume.nome == "NOVA - CITRUS BOHÈME" %}
+            <img src="{% static 'img/citrusboheme.jpg' %}" alt="{{ perfume.nome }}">
+          {% elif perfume.nome == "NOVA - MARÉ BLANCHE" %}
+            <img src="{% static 'img/mareblanche.jpg' %}" alt="{{ perfume.nome }}">
+          {% elif perfume.nome == "NOVA - MANGO VELVET" %}
+            <img src="{% static 'img/mangovelvet.jpg' %}" alt="{{ perfume.nome }}">
+          {% else %}
+            🌺
+          {% endif %}
+        </div>
+        <div class="card-body">
+          <span class="tag-tech small text-uppercase">{{ perfume.get_familia_display }}</span>
+          <h5 class="card-title mt-1">{{ perfume.nome }}</h5>
+          <p class="card-text">{{ perfume.descricao }}</p>
+          <p class="small text-muted mb-0">Notas: {{ perfume.notas }}</p>
+        </div>
+        <div class="card-footer bg-white border-0 pb-3">
+          <strong>R$ {{ perfume.preco|floatformat:2 }}</strong>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <p class="text-center">Nenhum perfume encontrado nesta família.</p>
+  {% endfor %}
+</div>
+{% endblock %}
