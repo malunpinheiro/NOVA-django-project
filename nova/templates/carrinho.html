@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}NOVA | Carrinho{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5">
+  <p class="tag-tech mb-1">SEU CARRINHO ✦ NOVA</p>
+  <h1>Carrinho</h1>
+</div>
+
+{% if itens %}
+<div class="row justify-content-center">
+  <div class="col-lg-9">
+
+    {% for item in itens %}
+      <div class="card card-perfume mb-3 p-3">
+        <div class="d-flex flex-wrap align-items-center justify-content-between gap-3">
+
+          <div>
+            <span class="tag-tech small text-uppercase">{{ item.perfume.get_familia_display }}</span>
+            <h5 class="mb-0">{{ item.perfume.nome }}</h5>
+            <small class="text-muted">R$ {{ item.perfume.preco|floatformat:2 }} cada</small>
+          </div>
+
+          <div class="d-flex align-items-center gap-2">
+            <form method="post" action="{% url 'diminuir_carrinho' item.perfume.pk %}" class="m-0">
+              {% csrf_token %}
+              <button type="submit" class="btn-qtd" aria-label="Diminuir">−</button>
+            </form>
+
+            <span class="qtd">{{ item.quantidade }}</span>
+
+            <form method="post" action="{% url 'adicionar_carrinho' item.perfume.pk %}" class="m-0">
+              {% csrf_token %}
+              <input type="hidden" name="next" value="{% url 'ver_carrinho' %}">
+              <button type="submit" class="btn-qtd" aria-label="Aumentar"
+                      {% if item.quantidade >= item.perfume.estoque %}disabled{% endif %}>+</button>
+            </form>
+          </div>
+
+          <strong>R$ {{ item.subtotal|floatformat:2 }}</strong>
+
+          <form method="post" action="{% url 'remover_carrinho' item.perfume.pk %}" class="m-0">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-sm btn-outline-danger rounded-pill">Remover</button>
+          </form>
+
+        </div>
+      </div>
+    {% endfor %}
+
+    <div class="d-flex flex-wrap justify-content-between align-items-center mt-4">
+      <a href="{% url 'lista_perfumes' %}" class="btn btn-outline-aurora">← Continuar comprando</a>
+      <p class="h4 mb-0">Total: <strong>R$ {{ total|floatformat:2 }}</strong></p>
+    </div>
+
+  </div>
+</div>
+{% else %}
+  <div class="text-center">
+    <p class="lead">Seu carrinho está vazio.</p>
+    <a href="{% url 'lista_perfumes' %}" class="btn btn-aurora">Explorar a vitrine</a>
+  </div>
+{% endif %}
+{% endblock %}

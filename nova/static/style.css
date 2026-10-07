@@ -63,15 +63,22 @@ body {
   transform: translateY(-6px);
   box-shadow: 0 1rem 1.8rem rgba(255, 79, 163, .25);
 }
+
+/*  FINAL DO ARQUIVO
+
 .card-perfume .capa {
-  height: 180px;
-  background: var(--holo);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 3rem;
+  height: auto !important;
+  min-height: 0 !important;
+  display: block;
+  line-height: 0;
 }
-.card-perfume .capa img { width: 100%; height: 100%; object-fit: cover; }
+
+.card-perfume .capa img { 
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block;
+} */
 
 .footer-aurora {
   background: var(--tinta);
@@ -141,3 +148,131 @@ body {
   color: #dc3545;
   font-size: .9rem;
 }
+
+.estoque { font-size: .85rem; font-weight: 600; color: #6b5b7b; margin-bottom: .5rem; }
+.estoque-baixo { color: var(--rosa); }
+
+.card-perfume .capa {
+  height: auto !important;
+  min-height: 0 !important;
+  display: block;
+  line-height: 0;
+}
+.card-perfume .capa img {
+  width: 100%;
+  height: auto !important;
+  object-fit: contain !important;
+  display: block;
+}
+
+/* ---------- Botão Adicionar (azul pastel) ---------- */
+.btn-add {
+  position: relative;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .45rem 1.1rem;
+  font-family: 'Fredoka', sans-serif;
+  font-weight: 600;
+  font-size: .9rem;
+  color: var(--tinta);
+  background: linear-gradient(135deg, #b8ecff, #8fd8f7);
+  border: 2px solid #5cc3ee;
+  border-radius: 50rem;
+  box-shadow: 0 .25rem .7rem rgba(92, 195, 238, .35);
+  cursor: pointer;
+  transition: transform .2s, box-shadow .25s, background .3s, border-color .2s;
+}
+/* brilho que atravessa o botão */
+.btn-add::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255, 255, 255, .75), transparent);
+  transform: skewX(-20deg);
+}
+.btn-add:hover {
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #7ee8fa, #c8a2ff);
+  border-color: #fff;
+  box-shadow: 0 .5rem 1.2rem rgba(200, 162, 255, .55), 0 0 0 4px rgba(126, 232, 250, .4);
+}
+.btn-add:hover::after { left: 130%; transition: left .6s ease; }
+.btn-add:hover svg { animation: balanca .5s ease; }
+.btn-add:active { transform: scale(.96); }
+.btn-add:disabled {
+  background: #e6e0ec;
+  border-color: #cfc3d6;
+  box-shadow: none;
+  color: #8d7f9b;
+  cursor: not-allowed;
+  transform: none;
+}
+.btn-add:disabled::after { display: none; }
+
+@keyframes balanca {
+  0%, 100% { transform: rotate(0); }
+  25% { transform: rotate(-14deg); }
+  75% { transform: rotate(14deg); }
+}
+
+/* ---------- Carrinho na navbar ---------- */
+.btn-carrinho {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 2px solid var(--rosa);
+  border-radius: 50%;
+  color: var(--rosa);
+  transition: background .2s, color .2s, transform .2s;
+}
+.btn-carrinho:hover { background: var(--rosa); color: #fff; transform: scale(1.08); }
+.carrinho-contador {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 50rem;
+  background: var(--tinta);
+  color: #fff;
+  font-size: .72rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #fff;
+}
+
+/* ---------- Botões + e − da página do carrinho ---------- */
+.btn-qtd {
+  width: 34px;
+  height: 34px;
+  border: 2px solid #5cc3ee;
+  border-radius: 50%;
+  background: #e6f8ff;
+  color: var(--tinta);
+  font-size: 1.2rem;
+  line-height: 1;
+  font-weight: 600;
+  transition: background .2s, transform .2s;
+}
+.btn-qtd:hover:not(:disabled) { background: #8fd8f7; transform: scale(1.1); }
+.btn-qtd:disabled { opacity: .4; cursor: not-allowed; }
+.qtd { min-width: 1.5rem; text-align: center; font-weight: 600; }
+
+/* ---------- Cards mais compactos ---------- */
+.vitrine { max-width: 900px; margin-left: auto; margin-right: auto; }
+.vitrine .card-body { padding: 1rem 1.1rem .5rem; }
+.vitrine .card-title { font-size: 1.05rem; }
+.vitrine .card-text { font-size: .9rem; }
+.vitrine .card-footer { padding: .5rem 1.1rem 1rem; }
+.vitrine .card-footer .d-flex { flex-wrap: wrap; }

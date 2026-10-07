@@ -1,6 +1,11 @@
+from django.contrib.auth import login
+from .forms import CadastroForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from decimal import Decimal
+from django.views.decorators.http import require_POST
+from django.utils.http import url_has_allowed_host_and_scheme
 
 from .forms import MisturaForm
 from .models import Perfume, Mistura
@@ -76,3 +81,80 @@ def excluir_mistura(request, pk):  # DELETE
         messages.success(request, "Mistura excluída.")
         return redirect("lista_misturas")
     return render(request, "confirmar_exclusao.html", {"mistura": mistura})
+
+def detalhe_perfume(request, pk):
+    perfume = get_object_or_404(Perfume, pk=pk)
+    return render(request, "detalhe_perfume.html", {"perfume": perfume})
+
+# ---------- CARRINHO ----------
+
+def _voltar(request, padrao="ver_carrinho"):
+    destino = request.POST.get("next", "")
+    if destino and url_has_allowed_host_and_scheme(destino, allowed_hosts={request.get_host()}):
+        return redirect(destino)
+    return redirect(padrao)
+
+
+def ver_carrinho(request):
+    dados = request.session.get("carrinho", {})
+    itens = []
+    total = Decimal("0")
+    for perfume in Perfume.objects.filter(pk__in=dados.keys()):
+        quantidade = dados[str(perfume.pk)]
+        subtotal = perfume.preco * quantidade
+        total += subtotal
+        itens.append({"perfume": perfume, "quantidade": quantidade, "subtotal": subtotal})
+    return render(request, "carrinho.html", {"itens": itens, "total": total})
+
+
+@require_POST
+def adicionar_carrinho(request, pk):
+    perfume = get_object_or_404(Perfume, pk=pk)
+    carrinho = request.session.get("carrinho", {})
+    atual = carrinho.get(str(pk), 0)
+    if atual + 1 > perfume.estoque:
+        messages.warning(request, f"Só temos {perfume.estoque} unidade(s) de {perfume.nome}.")
+    else:
+        carrinho[str(pk)] = atual + 1
+        request.session["carrinho"] = carrinho
+        messages.success(request, f"{perfume.nome} adicionado ao carrinho.")
+    return _voltar(request)
+
+
+@require_POST
+def diminuir_carrinho(request, pk):
+    carrinho = request.session.get("carrinho", {})
+    atual = carrinho.get(str(pk), 0)
+    if atual <= 1:
+        carrinho.pop(str(pk), None)
+    else:
+        carrinho[str(pk)] = atual - 1
+    request.session["carrinho"] = carrinho
+    return redirect("ver_carrinho")
+
+
+@require_POST
+def remover_carrinho(request, pk):
+    carrinho = request.session.get("carrinho", {})
+    carrinho.pop(str(pk), None)
+    request.session["carrinho"] = carrinho
+    messages.success(request, "Item removido do carrinho.")
+    return redirect("ver_carrinho")
+
+#As ações de alterar o carrinho só aceitam POST, o mesmo cuidado da exclusão de misturas
+
+def cadastro(request):
+    if request.user.is_authenticated:
+        return redirect("home")
+
+    if request.method == "POST":
+        form = CadastroForm(request.POST)
+        if form.is_valid():
+            usuario = form.save()
+            login(request, usuario)
+            messages.success(request, f"Conta criada! Bem-vinda, {usuario.username}.")
+            return redirect("home")
+    else:
+        form = CadastroForm()
+
+    return render(request, "registration/cadastro.html", {"form": form})

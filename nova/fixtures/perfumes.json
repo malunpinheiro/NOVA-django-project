@@ -9,7 +9,9 @@
     "familia": "SOL",
     "preco": "189.90",
     "imagem_url": "https://app.leonardo.ai/generation/image/create-hyper-realistic-luxury-3d-product-0f36fd2d-b3fd-4af0-a2d7-5a3bd3cef8b6?utm_source=share_asset&utm_medium=copylink&utm_content=image",
-    "destaque": true
+    "destaque": true,
+    "estoque": 6,
+    "imagem": "solaris.jpg"
   }
 },
 {
@@ -22,7 +24,9 @@
     "familia": "FRU",
     "preco": "199.90",
     "imagem_url": "https://app.leonardo.ai/generation/image/create-hyper-realistic-luxury-3d-product-2f4a2739-0157-4893-b073-0e98417caa15?utm_source=share_asset&utm_medium=copylink&utm_content=image",
-    "destaque": true
+    "destaque": false,
+    "estoque": 17,
+    "imagem": "pecheeclat.jpg"
   }
 },
 {
@@ -35,7 +39,9 @@
     "familia": "CIT",
     "preco": "179.50",
     "imagem_url": "https://app.leonardo.ai/generation/image/create-hyper-realistic-luxury-3d-product-1c8c9648-fe8f-4e94-9d7d-c8ceaf49c04e?utm_source=share_asset&utm_medium=copylink&utm_content=image",
-    "destaque": true
+    "destaque": false,
+    "estoque": 48,
+    "imagem": "citrusboheme.jpg"
   }
 },
 {
@@ -48,7 +54,9 @@
     "familia": "AQU",
     "preco": "169.81",
     "imagem_url": "https://app.leonardo.ai/generation/image/create-hyper-realistic-luxury-3d-product-87542f54-9518-4949-aa85-5f6d78eff044?utm_source=share_asset&utm_medium=copylink&utm_content=image",
-    "destaque": false
+    "destaque": true,
+    "estoque": 29,
+    "imagem": "mareblanche.jpg"
   }
 },
 {
@@ -61,7 +69,114 @@
     "familia": "GOU",
     "preco": "194.90",
     "imagem_url": "https://cdn.leonardo.ai/users/ac0f7809-7aaf-4bf1-80e8-1f4636db3f64/generations/1f1bdfae-f279-6b60-9d1a-138defc99245/gpt-image-2_Create_a_hyper-realistic_luxury_3D_product_advertisement_for_an_original",
-    "destaque": false
+    "destaque": false,
+    "estoque": 12,
+    "imagem": "mangovelvet.jpg"
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 6,
+  "fields": {
+    "nome": "NOVA - AMBRE SOLAIRE",
+    "descricao": "Uma aura dourada de âmbar quente, baunilha cremosa e flores iluminadas pelo sol.",
+    "notas": "Bergamota, flor de laranjeira, jasmim, âmbar, baunilha, sândalo",
+    "familia": "ÉCL",
+    "preco": "209.90",
+    "imagem_url": "",
+    "destaque": false,
+    "estoque": 36,
+    "imagem": "ambresolaire.jpg"
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 7,
+  "fields": {
+    "nome": "NOVA - LUMIÈRE ROSE",
+    "descricao": "Um floral delicado e luminoso que combina pétalas frescas com uma doçura elegante e envolvente.",
+    "notas": "Framboesa, pera, rosa, peônia, baunilha, musk branco",
+    "familia": "ÉCL",
+    "preco": "199.90",
+    "imagem_url": "",
+    "destaque": false,
+    "estoque": 24,
+    "imagem": "lumiererose.jpg"
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 8,
+  "fields": {
+    "nome": "NOVA - VERT ÉDEN",
+    "descricao": "Uma composição verde e fresca que traduz a sensação de caminhar por um jardim depois da chuva.",
+    "notas": "Limão siciliano, maçã verde, folhas de violeta, chá verde, cedro, musk",
+    "familia": "ÉCL",
+    "preco": "184.90",
+    "imagem_url": "",
+    "destaque": false,
+    "estoque": 31,
+    "imagem": "verteden.jpg"
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 9,
+  "fields": {
+    "nome": "NOVA - VANILLE CÉLESTE",
+    "descricao": "Uma baunilha cremosa e sofisticada, equilibrada por notas florais e um toque suave de madeiras.",
+    "notas": "Mandarina, íris, flor de baunilha, tonka, sândalo, musk",
+    "familia": "ÉCL",
+    "preco": "214.90",
+    "imagem_url": "",
+    "destaque": false,
+    "estoque": 27,
+    "imagem": "vanilleceleste.jpg"
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 10,
+  "fields": {
+    "nome": "NOVA - NOIR ÉTOILE",
+    "descricao": "Um perfume profundo e magnético, onde frutas escuras encontram madeiras envolventes e um acorde sedutor de âmbar.",
+    "notas": "Cassis, ameixa, pimenta rosa, jasmim, patchouli, âmbar, baunilha",
+    "familia": "NOC",
+    "preco": "230.07",
+    "imagem_url": "",
+    "destaque": true,
+    "estoque": 24,
+    "imagem": "noiretoile.jpg"
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 11,
+  "fields": {
+    "nome": "NOVA - SAHARA 24",
+    "descricao": "Uma fragrância quente e sofisticada inspirada no contraste entre o calor do deserto e a tranquilidade da noite.",
+    "notas": "Açafrão, tangerina, canela, âmbar, couro, baunilha, madeira de oud",
+    "familia": "NOC",
+    "preco": "239.90",
+    "imagem_url": "",
+    "destaque": false,
+    "estoque": 19,
+    "imagem": "sahara24.jpg"
+  }
+},
+{
+  "model": "nova.perfume",
+  "pk": 12,
+  "fields": {
+    "nome": "NOVA - VELVET MUSK",
+    "descricao": "Um musk macio e sofisticado envolvido por flores brancas, âmbar e madeiras cremosas.",
+    "notas": "Bergamota, lírio, jasmim, musk branco, âmbar, cashmere, sândalo",
+    "familia": "NOC",
+    "preco": "219.90",
+    "imagem_url": "",
+    "destaque": false,
+    "estoque": 33,
+    "imagem": "velvetmusk.jpg"
   }
 }
 ]

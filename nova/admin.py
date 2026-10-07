@@ -4,7 +4,8 @@ from .models import Perfume, Mistura
 
 @admin.register(Perfume)
 class PerfumeAdmin(admin.ModelAdmin):
-    list_display = ("nome", "familia", "preco", "destaque")
+    list_display = ("nome", "familia", "preco", "estoque", "destaque")
+    list_editable = ("preco", "estoque") #list editable permite vc editar preço e estoque direto na lista de perfumes, s/ abrir um por um
     list_filter = ("familia", "destaque")
     search_fields = ("nome", "notas")
 

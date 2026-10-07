@@ -1,0 +1,6 @@
+{% load static %}
+{% if perfume.imagem %}
+  <img src="{% static 'img/'|add:perfume.imagem %}" alt="{{ perfume.nome }}">
+{% else %}
+  🌺
+{% endif %}

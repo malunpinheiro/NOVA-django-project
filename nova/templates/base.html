@@ -25,9 +25,9 @@
           <li class="nav-item"><a class="nav-link" href="{% url 'lista_misturas' %}">Laboratório</a></li>
         </ul>
         <div class="d-flex align-items-center gap-2">
-            {% if user.is_authenticated %}
-              {% if user.is_staff %}
-                <a class="btn btn-sm btn-outline-aurora" href="{% url 'admin:index' %}">Admin</a>
+          {% if user.is_authenticated %}
+            {% if user.is_staff %}
+              <a class="btn btn-sm btn-outline-aurora" href="{% url 'admin:index' %}">Admin</a>
             {% endif %}
             <span class="small">Olá, {{ user.username }}</span>
             <form method="post" action="{% url 'logout' %}" class="m-0">
@@ -35,8 +35,14 @@
               <button class="btn btn-sm btn-outline-aurora">Sair</button>
             </form>
           {% else %}
-            <a class="btn btn-sm btn-aurora" href="{% url 'login' %}">Entrar</a>
+              <a class="btn btn-sm btn-outline-aurora" href="{% url 'cadastro' %}">Cadastrar</a>
+              <a class="btn btn-sm btn-aurora" href="{% url 'login' %}">Entrar</a>
           {% endif %}
+
+          <a class="btn-carrinho" href="{% url 'ver_carrinho' %}" aria-label="Carrinho">
+            {% include '_icone_carrinho.html' %}
+            {% if carrinho_qtd %}<span class="carrinho-contador">{{ carrinho_qtd }}</span>{% endif %}
+          </a>
         </div>
       </div>
     </div>

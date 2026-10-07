@@ -22,33 +22,37 @@
   {% endfor %}
 </div>
 
-<div class="row g-4">
-  {% for perfume in perfumes %}
+<div class="row g-4 justify-content-center vitrine">
+
+{% for perfume in perfumes %}
     <div class="col-md-6 col-lg-4">
       <div class="card card-perfume h-100">
-            <div class="capa">
-          {% if perfume.nome == "NOVA - SOLARIS" %}
-            <img src="{% static 'img/solaris.jpg' %}" alt="{{ perfume.nome }}">
-          {% elif perfume.nome == "NOVA - PÊCHE ÉCLAT" %}
-            <img src="{% static 'img/pecheeclat.jpg' %}" alt="{{ perfume.nome }}">
-          {% elif perfume.nome == "NOVA - CITRUS BOHÈME" %}
-            <img src="{% static 'img/citrusboheme.jpg' %}" alt="{{ perfume.nome }}">
-          {% elif perfume.nome == "NOVA - MARÉ BLANCHE" %}
-            <img src="{% static 'img/mareblanche.jpg' %}" alt="{{ perfume.nome }}">
-          {% elif perfume.nome == "NOVA - MANGO VELVET" %}
-            <img src="{% static 'img/mangovelvet.jpg' %}" alt="{{ perfume.nome }}">
-          {% else %}
-            🌺
-          {% endif %}
+        <div class="capa">
+          {% include '_capa_perfume.html' %}
         </div>
         <div class="card-body">
           <span class="tag-tech small text-uppercase">{{ perfume.get_familia_display }}</span>
           <h5 class="card-title mt-1">{{ perfume.nome }}</h5>
           <p class="card-text">{{ perfume.descricao }}</p>
+          <p class="estoque {% if perfume.estoque <= 5 %}estoque-baixo{% endif %}">
+            {% if perfume.estoque == 0 %}Esgotado{% elif perfume.estoque <= 5 %}Restam só {{ perfume.estoque }}{% else %}{{ perfume.estoque }} disponíveis{% endif %}
+          </p>
           <p class="small text-muted mb-0">Notas: {{ perfume.notas }}</p>
         </div>
         <div class="card-footer bg-white border-0 pb-3">
-          <strong>R$ {{ perfume.preco|floatformat:2 }}</strong>
+          <strong class="d-block mb-3">R$ {{ perfume.preco|floatformat:2 }}</strong>
+          <div class="d-flex justify-content-between align-items-center gap-2">
+            {% if perfume.estoque > 0 %}
+              <form method="post" action="{% url 'adicionar_carrinho' perfume.pk %}" class="m-0">
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                <button type="submit" class="btn-add">{% include '_icone_carrinho.html' %} Adicionar</button>
+              </form>
+            {% else %}
+              <button type="button" class="btn-add" disabled>Esgotado</button>
+            {% endif %}
+            <a href="{% url 'detalhe_perfume' perfume.pk %}" class="btn btn-sm btn-aurora">Ver detalhes</a>
+          </div>
         </div>
       </div>
     </div>

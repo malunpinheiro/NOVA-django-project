@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}NOVA | {{ perfume.nome }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-lg-10">
+    <div class="card card-perfume">
+      <div class="row g-0">
+
+        <div class="col-md-5">
+          <div class="capa h-100" style="min-height: 320px;">
+            {% include '_capa_perfume.html' %}
+          </div>
+        </div>
+
+        <div class="col-md-7">
+          <div class="card-body p-4">
+            <span class="tag-tech small text-uppercase">{{ perfume.get_familia_display }}</span>
+            <h1 class="h2 mt-1">{{ perfume.nome }}</h1>
+            <p class="lead">{{ perfume.descricao }}</p>
+
+            <h2 class="h5 mt-4">Notas olfativas</h2>
+            <p>{{ perfume.notas }}</p>
+
+            <p class="h4 mt-4">R$ {{ perfume.preco|floatformat:2 }}</p>
+            <p class="estoque {% if perfume.estoque <= 5 %}estoque-baixo{% endif %}">
+                {% if perfume.estoque == 0 %}Esgotado{% elif perfume.estoque <= 5 %}Restam só {{ perfume.estoque }}{% else %}{{ perfume.estoque }} disponíveis{% endif %}
+          </p>
+
+            <div class="d-flex flex-wrap gap-2 mt-4">
+              {% if perfume.estoque > 0 %}
+                <form method="post" action="{% url 'adicionar_carrinho' perfume.pk %}" class="m-0">
+                  {% csrf_token %}
+                  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+                  <button type="submit" class="btn-add">{% include '_icone_carrinho.html' %} Adicionar</button>
+                </form>
+              {% endif %}
+              <a href="{% url 'lista_perfumes' %}" class="btn btn-outline-aurora">← Voltar à vitrine</a>
+              <a href="{% url 'lista_misturas' %}" class="btn btn-aurora">✦ Usar no Laboratório</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

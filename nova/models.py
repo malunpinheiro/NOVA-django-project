@@ -11,6 +11,8 @@ class Perfume(models.Model):
         ("CIT", "Cítrica"),
         ("AQU", "Aquática"),
         ("SOL", "Solar"),
+        ("ÉCL", "Éclat"),
+        ("NOC", "Nocturne"),
     ]
 
     nome = models.CharField(max_length=120)
@@ -20,6 +22,8 @@ class Perfume(models.Model):
     preco = models.DecimalField(max_digits=8, decimal_places=2)
     imagem_url = models.URLField(blank=True)
     destaque = models.BooleanField(default=False, help_text="Aparece na Home")
+    estoque = models.PositiveIntegerField(default=10, help_text="Unidades disponíveis")
+    imagem = models.CharField(max_length=100, blank=True, help_text="Nome do arquivo em static/img, ex: solaris.jpg")
 
     class Meta:
         ordering = ["nome"]
