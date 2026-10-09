@@ -24,6 +24,8 @@ class Perfume(models.Model):
     destaque = models.BooleanField(default=False, help_text="Aparece na Home")
     estoque = models.PositiveIntegerField(default=10, help_text="Unidades disponíveis")
     imagem = models.CharField(max_length=100, blank=True, help_text="Nome do arquivo em static/img, ex: solaris.jpg")
+    imagem_detalhe = models.CharField(max_length=100, blank=True, help_text="Imagem ao passar o mouse, ex: solaris-detalhes.jpg")
+    video = models.CharField(max_length=100, blank=True, help_text="Vídeo do banner da Home (arquivo em static/video), ex: solaris.mp4")
 
     class Meta:
         ordering = ["nome"]

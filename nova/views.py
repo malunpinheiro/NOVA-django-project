@@ -12,7 +12,7 @@ from .models import Perfume, Mistura
 
 
 def home(request):
-    destaques = Perfume.objects.filter(destaque=True)[:3]
+    destaques = Perfume.objects.filter(destaque=True)[:4]
     return render(request, "home.html", {"destaques": destaques})
 
 
